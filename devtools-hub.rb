@@ -6,14 +6,20 @@ class DevtoolsHub < Formula
   license "MIT"
   version "3.5.0"
 
-  depends_on "python@3.14"
-
   def install
-    python = Formula["python@3.14"].opt_bin/"python3.14"
-    system python, "-m", "pip", "install", ".", "--prefix=#{prefix}"
+    libexec.install "devtools_hub"
+    libexec.install "devtools"
+    venv = libexec/"venv"
+    system "/usr/local/bin/python3.11", "-m", "venv", venv
+    system venv/"bin/pip", "install", "flask", "psutil", "requests"
+    (bin/"devtools").write <<~BASH
+      #!/bin/bash
+      exec "#{venv}/bin/python3" "#{libexec}/devtools_hub/cli.py" "$@"
+    BASH
+    chmod 0755, bin/"devtools"
   end
 
   test do
-    system Formula["python@3.14"].opt_bin/"python3.14", "-m", "devtools_hub.cli", "--help"
+    system "/usr/local/bin/python3", "-m", "devtools_hub.cli", "--help"
   end
 end
