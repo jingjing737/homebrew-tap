@@ -9,10 +9,11 @@ class DevtoolsHub < Formula
   depends_on "python@3.14"
 
   def install
-    system "python3.14", "-m", "pip", "install", "./"
+    python = Formula["python@3.14"].opt_bin/"python3.14"
+    system python, "-m", "pip", "install", ".", "--prefix=#{prefix}"
   end
 
   test do
-    system "python3.14", "-m", "devtools_hub.cli", "--help"
+    system Formula["python@3.14"].opt_bin/"python3.14", "-m", "devtools_hub.cli", "--help"
   end
 end
