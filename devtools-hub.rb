@@ -2,7 +2,7 @@ class DevtoolsHub < Formula
   desc "Developer toolkit for system monitoring"
   homepage "https://github.com/jingjing737/devtools-hub"
   url "https://github.com/jingjing737/devtools-hub/archive/refs/tags/v3.5.0.tar.gz"
-  sha256 "0e8551d870e6ac27e0cd0579cae05b518feaf7625f7f8eb25a7d2a33ef4c0937"
+  sha256 "5d5ecfaf7c1bb7d1ee7dabd66cbd492b1da62736e36c0ae5eeda6d66d9312843"
   license "MIT"
   version "3.5.0"
 
